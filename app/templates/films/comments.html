@@ -1,0 +1,88 @@
+# set sess_info = get_sess_info()
+# macro commentbox(body, redirect)
+	# if sess_info
+		<form action="{{ redirect }}" method="post">
+			<textarea name="comment" id="commentbox" cols="60" rows="7">{{ body|e }}</textarea>
+			<br>
+			<input type="submit" value="Submit" class="btn btn-primary">
+		</form>
+	# else
+		<a href="{{ url_for('auth.auth_page') }}">Sign up or log in</a> to comment
+		<br>
+	# endif
+	<br>
+# endmacro
+
+<script>
+	function editmode(comment_id) {
+		$(".editcomment").hide()
+		$("#comment_"+comment_id+" .editcomment").show()
+		$("#comment_"+comment_id+" .commentbody").hide()
+	}
+	function confirm_delete(comment_id) {
+		$('#confirm_delete_' + comment_id).modal()
+	}
+</script>
+# macro comment(comment_row, is_yours):
+	<div class="comment" id="comment_{{ comment_row.comment_id }}">
+		# if show_film
+			<small><a href="/film/{{ comment_row.film_id }}">&gt {{ comment_row.title|e }}</a></small>
+			<br>
+		# endif
+		<small>
+			# if is_yours
+				*
+			# endif
+			<a href="/user/{{ comment_row.user_id_ }}" style="font-weight: bold;">{{ comment_row.username|e }}</a> - {{ comment_row.date_ }}
+		</small>
+		<div class="commentbody">
+			{{ comment_row.body|e }}
+		</div>
+		# if is_yours
+			<div class="editcomment" style="display: none">
+				{{ commentbox(comment_row.body, "/film/"+comment_row.film_id+"/comment/"+comment_row.comment_id+"/edit") }}
+			</div>
+		# endif
+		
+		# if is_yours
+			<div id="confirm_delete_{{ comment_row.comment_id }}" class="modal" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content bg-dark1">
+						<div class="modal-header">
+							<h5>Delete comment</h5>
+							<button class="close" type="button" data-dismiss="modal" aria-label="close">
+								<span aria-hidden="true">&times</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>Are you sure that you want to permanently delete this comment?</p>
+						</div>
+						<form action="{{ url_for('film.delete_comment', film_id=comment_row.film_id, comment_id=comment_row.comment_id) }}" method="POST" class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-danger">Delete</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<small>
+				<a href="javascript:editmode('{{ comment_row.comment_id }}')" style="color: #888;">edit</a>
+				<a href="javascript:confirm_delete('{{ comment_row.comment_id }}')" style="color: #888;">delete</a>
+			</small>
+		# endif
+	</div>
+# endmacro
+
+<h6>Comments ({{ comments|length }})</h6>
+
+# if comment_box
+	{{ commentbox('', url_for('film.submit_comment', film_id=film_id)) }}
+# endif
+	
+# if comments|length > 0:
+	# for comment_row in comments:
+		{{ comment(
+			comment_row,
+			comment_row.user_id_ == sess_info.user_id_
+		) }}
+	# endfor
+# endif

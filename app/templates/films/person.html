@@ -1,0 +1,28 @@
+# extends 'base.html'
+
+# block content
+
+<h3>{{ name|e }}</h3> 
+<br>
+
+<!-- Directed -->
+# if directed|length > 0
+	<hr>
+	<h5>Films directed by {{ name|e }}</h5>
+	# with
+		# set films=directed
+		# include 'films/tiles.html'
+	# endwith
+# endif
+
+<!-- Acted -->
+# if acted|length > 0
+	<hr>
+	<h5>Films starring {{ name|e }}</h5>
+	# with
+		# set films=acted
+		# include 'films/tiles.html'
+	# endwith
+# endif
+
+# endblock

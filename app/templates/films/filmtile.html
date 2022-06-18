@@ -1,0 +1,21 @@
+<!-- :filmtile: -->
+<div class="filmtile card bg-dark1">
+	<a href="{{ url_for('film.film_page', film_id=f.film_id) }}">
+		<div class="card-body">
+			<h5 class="card-title">
+				{{ f.title|e }}
+			</h5>
+			<div class="card-text">
+				<small>
+					<span class="badge badge-secondary">{{ f.rating }}</span>
+					{{ f.duration|e }}
+				</small>
+				<br>
+				{{ f.film_desc|e }}
+			</div>
+			<small>
+				
+			</small>
+		</div>
+	</a>
+</div>

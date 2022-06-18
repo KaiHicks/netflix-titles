@@ -1,0 +1,7 @@
+{
+	"flask": {
+	},
+	"secret_key": "generate",
+	"init_db": true,
+	"testing": true
+}

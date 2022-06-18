@@ -1,0 +1,57 @@
+# extends 'base.html' 
+
+# block content 
+
+<h3>{{ film_row.title|e }} <span class="badge badge-secondary">{{ film_row.film_type }}</span></h3> 
+<small>
+	<span class="badge badge-secondary">{{ film_row.rating }}</span>
+	{{ film_row.duration|e }}
+</small>
+
+<p>
+	{{ film_row.film_desc|e }}
+	<br>
+	# for tag in tags 
+		<span class="badge badge-secondary">{{ tag|e }}</span>
+	# endfor 
+</p>
+
+# macro list_items(vals, prefix, func_name, param_name, quote):
+	# if vals|length > 0 
+		<p>
+			{{ prefix|e }}
+			# for v in vals
+				# if loop.index == vals|length and loop.index != 0 
+					and
+				# endif 
+				# if loop.index < vals|length and vals|length > 2 
+					# set sep = ', ' 
+				# else
+					# set sep = ' '
+				# endif
+				
+				# if quote:
+					# set params = {param_name: v|quote_plus}
+				# else
+					# set params = {param_name: v}
+				# endif
+				<a href="{{ url_for(func_name, **params) }}">{{ v|e }}</a>{{sep}}
+			# endfor 
+		</p>
+	# endif 
+# endmacro
+
+{{ list_items(directors, 'Directed by', 'person.person_page', 'name') }}
+{{ list_items(cast, 'Starring', 'person.person_page', 'name') }}
+
+<hr>
+
+# with
+	# set film_id = film_row.film_id
+	# set show_film = false
+	# set comment_box = true
+	# set comments = comments
+	# include 'films/comments.html'
+# endwith
+
+# endblock 

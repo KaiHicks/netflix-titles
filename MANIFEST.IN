@@ -1,0 +1,4 @@
+include query-create-database.sql
+graft app/static
+gradt app/templates
+global-exclude *.pyc

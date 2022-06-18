@@ -1,0 +1,66 @@
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/libsodium-wrappers/0.5.4/sodium.min.js" integrity="sha512-oRfU7aik4u7f0dPAKgOyA4+bb/YRGfAaD5RA4Z3Mb2ycPcGDs+k8qAnDNd7ouruoqlIHSuGVaTTlEs91Gvd37A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script src="/static/js/sodium.js"></script>
+<script src="/static/js/auth.js"></script>
+
+<div class="jumbotron carousel slide bg-dark1" id="authbox" data-interval="false" data-touch="false">
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<form action="javascript:register()" class="authform" id="registerform">
+				<h3>Register</h3>
+				<ul>
+					<li>
+						<label for="username">Username</label>
+						<br>
+						<input type="text" name="username" id="username" required>
+					</li>
+					<br>
+					<li>
+						<label for="password">Password</label>
+						<br>
+						<input type="password" name="password" id="password" required>
+					</li>
+					<br>
+					<li>
+						<label for="cpassword">Confirm Password</label>
+						<br>
+						<input type="password" name="cpassword" id="cpassword" required>
+					</li>
+					<br>
+					<p class="text-danger" id="errortext" stype="display: none"></p>
+					<li>
+						<input class="btn-primary" type="submit" value="Register">
+					</li>
+					<li>
+						<a href="#authbox" role="button" data-slide="next">log in</a>
+					</li>
+				</ul>
+			</form>
+		</div>
+		<div class="carousel-item">
+			<form action="javascript:login()" class="authform" id="loginform">
+				<h3>Log in</h3>
+				<ul>
+					<li>
+						<label for="username">Username</label>
+						<br>
+						<input type="text" name="username" id="username" required>
+					</li>
+					<br>
+					<li>
+						<label for="password">Password</label>
+						<br>
+						<input type="password" name="password" id="password" required>
+					</li>
+					<br>
+					<p class="text-danger" id="errortext" stype="display: none"></p>
+					<li>
+						<input class="btn-primary" type="submit" value="Log in">
+					</li>
+					<li>
+						<a href="#authbox" role="button" data-slide="prev">register</a>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>

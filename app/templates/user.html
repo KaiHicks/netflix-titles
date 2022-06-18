@@ -1,0 +1,15 @@
+# extends 'base.html' 
+
+# block content 
+
+<h3>{{ user_row.username|e }}</h3> 
+
+# with
+	# set film_id = ''
+	# set show_film = true
+	# set comment_box = false
+	# set comments = comments
+	# include 'films/comments.html'
+# endwith
+
+# endblock 

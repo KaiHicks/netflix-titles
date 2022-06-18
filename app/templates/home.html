@@ -1,0 +1,68 @@
+# extends 'base.html' 
+
+# block content 
+
+<style>
+	.home-filter-menu li {
+		display: flex;
+		flex-direction: row;
+	}
+	.home-filter-menu li label {
+		align-self: flex-start;
+	}
+	.home-filter-menu li input {
+		margin-left: auto;
+		margin-right: 1rem;
+	}
+</style>
+
+<form action="">
+	<div class="navbar" style="display: flex; flex-direction: row;">
+		<div style="align-self: flex-start;">
+			<label for="sort">Sort by</label>
+			<select name="sort" id="sort" class="bg-dark1" style="border: 2px;" onchange="this.form.submit()">
+				<option value="feature" 
+					# if sort == 'feature'
+						selected 
+					# endif
+				>Featured</option>
+				<option value="title" 
+					# if sort == 'title'
+						selected 
+					# endif
+				>Title</option>
+				<option value="release_year"
+					# if sort == 'release_year'
+						selected
+					# endif
+				>Release Year</option>
+			</select>
+		</div>
+		
+		<!-- <div class="btn-group" style="margin-left: auto;">
+			<button type="button" class="btn btn-sm bg-dark1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Filter
+			</button>
+			<ul class="dropdown-menu bg-dark1 home-filter-menu">
+				<li class="form-check form-horizontal">
+					<label for="filter-movies" class="form-check-label">Movies</label>
+					<input type="checkbox" class="form-check input" id="filter-movies" checked>
+				</li>
+				<li class="form-check form-horizontal">
+					<label for="filter-tv" class="form-check-label">Tv Shows</label>
+					<input type="checkbox" class="form-check input" id="filter-movies" checked>
+				</li>
+				<li>
+					<button class="btn btn-sm bg-primary" type="submit" style="margin-left: auto">Apply</button>
+				</li>
+			</ul>
+		</div> -->
+	</div>
+</form>
+
+# with 
+	# set films=films 
+	# include 'films/tiles.html' 
+# endwith 
+
+# endblock 

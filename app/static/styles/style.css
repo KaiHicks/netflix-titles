@@ -1,0 +1,78 @@
+* {
+	color: #ccc;
+}
+
+a, a:visited{
+	color: #007BFF;
+}
+
+.dropdown-item {
+	color: #007BFF !important;
+}
+.dropdown-item:hover {
+	color: #212529 !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+hr {
+	background-color: #ccc;
+}
+
+input[type=text], input[type=password], textarea {
+	background-color: #ddd;
+	border: black 2px solid;
+	color: #090B10;
+}
+
+/* input[type=submit] {
+	background-color: #007BFF;
+	border: #007BFF 1px solid;
+	border-radius: 3px;
+} */
+
+.bg-dark0 {
+	background-color: #090B10;
+}
+.bg-dark1 {
+	background-color: #171b29;
+	color: #ccc;
+}
+
+.nav-link {
+	color: grey;
+}
+
+.filmtile {
+	width: 18rem;
+	transition: all 0.2s ease-in-out;
+	box-shadow: rgba(128, 128, 128, 0.1) 0px 2px 4px;
+	
+	margin: 0.5rem;
+}
+.filmtile:hover {
+	box-shadow: rgba(128, 128, 128, 0.2) 0px 2px 4px;
+	transform: perspective(500px) translate3d(0px, 0px, 20px);
+}
+
+/* authentication */
+#authbox li, #authbox ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+#authbox .carousel-inner .carousel-item .authform {
+	width: 30%;
+	margin-left:  35%;
+}
+
+/* Other */
+
+.modal-header {
+	border-bottom: 1px solid #888;
+}
+.modal-footer {
+	border-top: 1px solid #888;
+}
